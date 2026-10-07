@@ -1,13 +1,14 @@
 :root {
-  --bg: #0B0D12;
-  --bg-soft: #11141C;
-  --panel: #151924;
-  --line: #232938;
-  --text: #E8EAF0;
-  --text-dim: #9AA1B1;
-  --accent: #7C3AED;
-  --accent-soft: #A78BFA;
-  --green: #4ADE80;
+  --bg: #0A0A14;
+  --bg-soft: #10101E;
+  --panel: #14141F;
+  --line: #262638;
+  --text: #F2F0EB;
+  --text-dim: #A3A0B4;
+  --accent: #FF7A1A;
+  --accent-soft: #FFB070;
+  --pink: #FF3CAC;
+  --cyan: #2BE8F6;
 }
 
 * { box-sizing: border-box; }
@@ -31,6 +32,7 @@ a:hover { color: var(--text); }
   font-size: 0.6rem;
   letter-spacing: 0.12em;
   color: var(--accent-soft);
+  text-shadow: 0 0 10px rgba(255, 176, 112, 0.55);
 }
 
 .wrap {
@@ -47,10 +49,12 @@ a:hover { color: var(--text); }
   inset: 0;
   z-index: -1;
   background-image:
-    linear-gradient(rgba(124, 58, 237, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(124, 58, 237, 0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
-  mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 30%, transparent 100%);
+    radial-gradient(ellipse 85% 55% at 50% 0%, rgba(255, 122, 26, 0.14), transparent 70%),
+    linear-gradient(rgba(255, 176, 112, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 176, 112, 0.06) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+  -webkit-mask-image: radial-gradient(ellipse 95% 75% at 50% 0%, black 25%, transparent 100%);
+  mask-image: radial-gradient(ellipse 95% 75% at 50% 0%, black 25%, transparent 100%);
 }
 
 /* ---------- header ---------- */
@@ -58,7 +62,7 @@ a:hover { color: var(--text); }
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(11, 13, 18, 0.85);
+  background: rgba(10, 10, 20, 0.85);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
@@ -79,16 +83,10 @@ a:hover { color: var(--text); }
 }
 
 .logo-mark {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border: 2px solid var(--accent);
-  border-radius: 6px;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 0.55rem;
-  color: var(--accent-soft);
-  box-shadow: 0 0 12px rgba(124, 58, 237, 0.4);
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  filter: drop-shadow(0 0 10px rgba(255, 176, 112, 0.35));
 }
 
 .logo-text {
@@ -107,12 +105,13 @@ a:hover { color: var(--text); }
 .nav a:hover { color: var(--text); }
 
 .nav-cta {
-  color: #fff !important;
+  color: #191006 !important;
   background: var(--accent);
   padding: 8px 14px;
   border-radius: 6px;
+  box-shadow: 0 0 14px rgba(255, 122, 26, 0.35);
 }
-.nav-cta:hover { background: var(--accent-soft); color: #fff !important; }
+.nav-cta:hover { background: var(--accent-soft); color: #191006 !important; }
 
 .nav-toggle {
   display: none;
@@ -128,7 +127,45 @@ a:hover { color: var(--text); }
 
 /* ---------- hero ---------- */
 .hero {
-  padding: 96px 0 64px;
+  position: relative;
+  padding: 96px 0 88px;
+}
+
+/* retro sun */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 6%;
+  right: -110px;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 30px, rgba(10, 10, 20, 0.85) 30px 37px),
+    linear-gradient(to bottom, #FFC46B 0%, #FF7A1A 45%, #FF3CAC 80%, #7B2BF9 100%);
+  opacity: 0.5;
+  box-shadow: 0 0 90px rgba(255, 122, 26, 0.35);
+  pointer-events: none;
+}
+
+/* perspective floor */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: -80%;
+  right: -80%;
+  bottom: -18%;
+  height: 46%;
+  background-image:
+    linear-gradient(to bottom, rgba(255, 122, 26, 0.4) 2px, transparent 2px),
+    linear-gradient(to right, rgba(255, 122, 26, 0.4) 2px, transparent 2px);
+  background-size: 64px 48px;
+  transform: perspective(480px) rotateX(58deg);
+  transform-origin: top center;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 30%, black 75%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 30%, black 75%, transparent);
+  opacity: 0.55;
+  pointer-events: none;
 }
 
 .eyebrow { margin: 0 0 20px; }
@@ -139,6 +176,7 @@ a:hover { color: var(--text); }
   line-height: 1.08;
   font-weight: 700;
   letter-spacing: -0.02em;
+  text-shadow: 0 0 32px rgba(255, 122, 26, 0.25);
 }
 
 .cursor {
@@ -169,7 +207,7 @@ a:hover { color: var(--text); }
   border: 1px solid var(--line);
   color: var(--text);
   font-weight: 500;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
 .btn:hover {
@@ -178,13 +216,13 @@ a:hover { color: var(--text); }
 }
 
 .btn-primary {
-  border-color: var(--accent);
+  border-color: transparent;
   background: var(--accent);
-  color: #fff;
-  box-shadow: 0 0 18px rgba(124, 58, 237, 0.35);
+  color: #191006;
+  box-shadow: 0 0 22px rgba(255, 122, 26, 0.4);
 }
 
-.btn-primary:hover { background: var(--accent-soft); color: #fff; }
+.btn-primary:hover { background: var(--accent-soft); color: #191006; }
 
 .btn-big { font-size: 1.05rem; padding: 14px 28px; }
 
@@ -247,12 +285,13 @@ a:hover { color: var(--text); }
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 22px;
-  transition: transform 0.15s ease, border-color 0.15s ease;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .card:hover {
   transform: translateY(-3px);
   border-color: var(--accent);
+  box-shadow: 0 0 18px rgba(255, 122, 26, 0.22);
 }
 
 .card h3 {
@@ -279,8 +318,8 @@ a:hover { color: var(--text); }
 .card .tags li {
   font-size: 0.75rem;
   color: var(--accent-soft);
-  background: rgba(124, 58, 237, 0.12);
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  background: rgba(255, 122, 26, 0.12);
+  border: 1px solid rgba(255, 122, 26, 0.32);
   padding: 3px 9px;
   border-radius: 999px;
 }
@@ -317,7 +356,7 @@ a:hover { color: var(--text); }
 .quest-meta {
   font-family: 'Press Start 2P', monospace;
   font-size: 0.55rem;
-  color: var(--green);
+  color: var(--cyan);
 }
 
 .quest p {
@@ -380,7 +419,8 @@ a:hover { color: var(--text); }
 
   .nav.open { display: flex; }
 
-  .hero { padding: 64px 0 48px; }
+  .hero { padding: 64px 0 56px; }
+  .hero::before { display: none; }
   .section { padding: 52px 0; }
   .stats { gap: 24px; }
 }
